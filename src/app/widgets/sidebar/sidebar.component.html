@@ -1,0 +1,93 @@
+<div
+    class="sidebar-area bg-white active"
+    [ngClass]="{'active': isSidebarToggled}"
+    [class.component-dark-theme]="themeService.isDark()"
+    [class.dark-sidebar]="themeService.isSidebarDark()"
+    [class.right-sidebar]="themeService.isRightSidebar()"
+    [class.hide-sidebar]="themeService.isHideSidebar()"
+    [class.card-borderd-theme]="themeService.isCardBorder()"
+    [class.rtl-enabled]="themeService.isRTLEnabled()"
+>
+    <div class="logo bg-white">
+        <a routerLink="/" class="d-flex align-items-center">
+            <img src="images/logo-icon.svg" alt="logo-icon">
+            <span class="fw-semibold">Athena OS</span>
+        </a>
+    </div>
+    <div
+        (click)="toggle()"
+        class="burger-menu"
+        [ngClass]="{'active': isSidebarToggled}"
+    >
+        <span class="top-bar"></span>
+        <span class="middle-bar"></span>
+        <span class="bottom-bar"></span>
+    </div>
+    <ng-scrollbar visibility="hover">
+        <div class="sidebar-inner">
+            <div class="sidebar-menu">
+                <mat-accordion>
+
+                    <span class="sub-title text-body">
+                        Home
+                    </span>
+
+                    <a routerLink="/dashboard" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">dashboard</i>
+                        <span class="title">Dashboard</span>
+                    </a>
+
+                    <a routerLink="/pdv" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">store</i>
+                        <span class="title">Ponto de venda</span>
+                    </a>
+
+                    <a *appHasAnyRole="['ADMIN', 'MODERATOR']" routerLink="/orders" class="sidebar-menu-link" routerLinkActive="active"
+                       [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">receipt_long</i>
+                        <span class="title">Pedidos</span>
+                    </a>
+
+                    <a routerLink="/" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">account_balance</i>
+                        <span class="title">Transações</span>
+                    </a>
+
+                    <a routerLink="/clients" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">person</i>
+                        <span class="title">Clientes</span>
+                    </a>
+
+                    <a routerLink="/products" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">package_2</i>
+                        <span class="title">Produtos</span>
+                    </a>
+
+                    <a routerLink="/categories" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">category</i>
+                        <span class="title">Categorias</span>
+                    </a>
+
+                    <a routerLink="/employees" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">badge</i>
+                        <span class="title">Funcionários</span>
+                    </a>
+
+                    <a routerLink="/settings" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">settings</i>
+                        <span class="title">Configuração</span>
+                    </a>
+
+                    <!--
+                    <a routerLink="/" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">history</i>
+                        <span class="title">Históricos</span>
+                    </a>
+                    -->
+
+
+                </mat-accordion>
+            </div>
+        </div>
+    </ng-scrollbar>
+</div>

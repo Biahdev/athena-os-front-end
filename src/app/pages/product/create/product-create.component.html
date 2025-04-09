@@ -1,0 +1,180 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-between">
+    <h5 class="mb-0">
+        Novo produto
+    </h5>
+    <ol class="breadcrumb list-unstyled mt-0 mb-0 pl-0">
+        <li class="breadcrumb-item position-relative">
+            <a routerLink="/" class="d-inline-block position-relative">
+                <i class="ri-home-8-line"></i>
+                Produtos
+            </a>
+        </li>
+        <li class="breadcrumb-item position-relative">
+            Novo produto
+        </li>
+    </ol>
+</div>
+
+<form [formGroup]="createProductForm" (ngSubmit)="onSubmit()">
+    <mat-card class="daxa-card create-product-card mb-25 border-radius bg-white border-none d-block">
+        <mat-card-header>
+            <mat-card-title>
+                <h5 class="mb-0">
+                    Descrição
+                </h5>
+            </mat-card-title>
+            <mat-card-subtitle>
+                <button mat-flat-button class="daxa" type="submit">Cadastrar</button>
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="mb-25">
+                        <mat-form-field>
+                            <mat-label>
+                                Nome
+                            </mat-label>
+                            <input matInput formControlName="name" placeholder="Camisa">
+                            <mat-error *ngIf="createProductForm.controls['name'].errors?.['required']">
+                                Campo obrigatório
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-25">
+                        <mat-form-field>
+                            <mat-label>
+                                Categoria
+                            </mat-label>
+                            <mat-select formControlName="categoryId">
+                                <mat-option *ngFor="let category of categories" value="{{category.categoryId}}"> {{ category.name }}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="createProductForm.controls['categoryId'].errors?.['required']">
+                                Campo obrigatório
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-25">
+                        <mat-form-field>
+                            <mat-label>
+                                Preço de custo
+                            </mat-label>
+                            <input matInput [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align:'left' }" currencyMask
+                                   formControlName="costValue">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-25">
+                        <mat-form-field>
+                            <mat-label>
+                                Preço de venda
+                            </mat-label>
+                            <input matInput [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align:'left' }" currencyMask
+                                   formControlName="salesValue">
+                            <mat-error *ngIf="createProductForm.controls['salesValue'].errors?.['required']">
+                                Campo obrigatório
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-25">
+                        <label class="main-label d-block lh-1 text-black">
+                            Descrição do produto
+                        </label>
+                        <div class="NgxEditor__Wrapper">
+                            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>
+                            <ngx-editor formControlName="description" [editor]="editor" [placeholder]="'Escreva aqui...'"></ngx-editor>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-25">
+                        <label class="main-label d-block lh-1 text-black">
+                            Imagem do produto
+                        </label>
+                        <file-upload class="file-uploader"></file-upload>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="daxa-card create-product-card mb-25 border-radius bg-white border-none d-block">
+        <mat-card-header>
+            <mat-card-title>
+                <h5 class="mb-0">
+                    Opções
+                </h5>
+            </mat-card-title>
+            <mat-card-subtitle>
+                <button mat-mini-fab matTooltip="Daxa" class="daxa" type="button" (click)="newOption()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div formArrayName="options">
+                <div class="row mb-20" *ngFor="let item of options().controls; let option = index">
+                    <div class="col-md-12">
+                        <div class="row" [formGroupName]="option">
+                            <div class="col-md-3">
+                                <mat-form-field>
+                                    <mat-label>
+                                        Título
+                                    </mat-label>
+                                    <input matInput formControlName="title" placeholder="Cores">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field>
+                                    <mat-label>
+                                        Tipo do campo
+                                    </mat-label>
+                                    <mat-select formControlName="type">
+                                        <mat-option value="MULTI_SELECT">Selecionar varias opção</mat-option>
+                                        <mat-option value="SINGLE_SELECT">Selecionar uma das opções</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4" formArrayName="values">
+                                <mat-form-field>
+                                    <mat-label>Opções</mat-label>
+                                    <mat-chip-grid #chipGrid>
+                                        <mat-chip-row (removed)="removeOptionValue(option, chipValue)"
+                                                      (click)="editOptionValue(option, chipValue, optionValue.value)"
+                                                      *ngFor="let optionValue of optionsValues(option).controls; let chipValue=index">
+                                            {{ optionValue.value.name }} | {{ optionValue.value.price | currency }}
+                                            <button matChipRemove>
+                                                <mat-icon>cancel</mat-icon>
+                                            </button>
+                                        </mat-chip-row>
+                                        <input
+                                                placeholder="Nova opção... "
+                                                [matChipInputFor]="chipGrid"
+                                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                [matChipInputAddOnBlur]="true"
+                                                (matChipInputTokenEnd)="newOptionValue($event, option)"
+                                        />
+                                    </mat-chip-grid>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-1 d-flex justify-content-center align-items-center">
+                                <button mat-icon-button type="button" matTooltip="Daxa" color="warn" (click)="removeOption(option)">
+                                    <mat-icon class="scale-14">delete</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</form>

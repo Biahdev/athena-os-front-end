@@ -1,0 +1,368 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-between">
+    <h5 class="mb-0">
+        Detalhe do Pedido
+    </h5>
+    <ol class="breadcrumb list-unstyled mt-0 mb-0 pl-0">
+        <li class="breadcrumb-item position-relative">
+            <a routerLink="/" class="d-inline-block position-relative">
+                <i class="ri-home-8-line"></i>
+                Pedidos
+            </a>
+        </li>
+        <li class="breadcrumb-item position-relative">
+            Detalhe do pedido
+        </li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 col-md-6">
+        <mat-card
+            class="daxa-card order-details-card mb-25 border-radius bg-white border-none d-block"
+            [class.rtl-enabled]="themeService.isRTLEnabled()"
+        >
+            <mat-card-content>
+                <h5>
+                    Cliente
+                </h5>
+                <ul class="pl-0 mb-0 mt-0 list-unstyled">
+                    <li class="text-body">
+                        <span class="text-black">Name: </span> {{ data.client.name }}
+                    </li>
+                    <li class="text-body mt-5">
+                        <span class="text-black">Telefone: </span>  {{ data.client.phone }}
+                    </li>
+                    <li class="text-body mt-5">
+                        <span class="text-black">Instagram: </span>  {{ data.client.instagram }}
+                    </li>
+                    <li class="text-body mt-5">
+                        <span class="text-black">Endereço: </span> {{ data.client.address }}
+                    </li>
+                </ul>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-lg-6 col-md-6">
+        <mat-card
+            class="daxa-card order-details-card mb-25 border-radius bg-white border-none d-block"
+            [class.rtl-enabled]="themeService.isRTLEnabled()"
+        >
+            <mat-card-content>
+                <h5>
+                    Pedido
+                </h5>
+                <ul class="pl-0 mb-0 mt-0 list-unstyled">
+                    <li class="text-body">
+                        <span class="text-black">Vendedor: </span> {{ data.employee.name }}
+                    </li>
+                    <li class="text-body mt-5">
+                        <span class="text-black">Data do pedido: </span> {{ data.createdAt |  date: 'dd/MM/yy' }}
+                    </li>
+                    <li class="text-body mt-5">
+                        <span class="text-black">Data da entrega: </span> {{ data.deliveryDate | date: 'dd/MM/yy' }}
+                    </li>
+                    <li class="text-body mt-5">
+                        <span class="text-black">Tipo da entrega: </span> Indefinido
+                    </li>
+                </ul>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<!-- Order Tracking -->
+<div class="row">
+    <div class="col-lg-8">
+        <mat-card
+            class="daxa-card order-tracking-card mb-25 border-radius bg-white border-none d-block"
+            [class.component-dark-theme]="themeService.isDark()"
+        >
+            <mat-card-header>
+                <mat-card-title>
+                    <h5 class="mb-0">
+                        Pedido #{{ data.orderId }}
+                    </h5>
+                </mat-card-title>
+                <mat-card-subtitle>
+                    <h5 class="mb-0">
+                        {{ data.status }}
+                    </h5>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <span class="text d-block text-body"></span>
+                <div class="numbers position-relative d-md-flex justify-content-between">
+                    <div class="box">
+                        <div class="rounded-circle text-center fw-medium">
+                            01
+                        </div>
+                        <span class="fw-medium d-block">
+                           Criação
+                        </span>
+                        <span class="d-block text-body">
+                            {{ data.createdAt |  date: 'dd/MM/yy HH:mm' }}
+                        </span>
+                    </div>
+                    <div class="box">
+                        <div class="rounded-circle text-center fw-medium">
+                            02
+                        </div>
+                        <span class="fw-medium d-block">
+                            Entrada
+                        </span>
+                        <span class="d-block text-body">
+                           {{ data.createdAt |  date: 'dd/MM/yy HH:mm' }}
+                        </span>
+                    </div>
+                    <div class="box">
+                        <div class="rounded-circle text-center fw-medium">
+                            03
+                        </div>
+                        <span class="fw-medium d-block">
+                            Produção
+                        </span>
+                        <span class="d-block text-body">
+                            {{ data.createdAt |  date: 'dd/MM/yy HH:mm' }}
+                        </span>
+                    </div>
+                    <div class="box">
+                        <div class="rounded-circle text-center fw-medium">
+                            04
+                        </div>
+                        <span class="fw-medium d-block">
+                            Pronto
+                        </span>
+                        <span class="d-block text-body">
+                            {{ data.createdAt |  date: 'dd/MM/yy HH:mm' }}
+                        </span>
+                    </div>
+                    <div class="box">
+                        <div class="rounded-circle text-center fw-medium">
+                            05
+                        </div>
+                        <span class="fw-medium d-block">
+                            Entregue
+                        </span>
+                        <span class="d-block text-body">
+                           {{ data.createdAt |  date: 'dd/MM/yy HH:mm' }}
+                        </span>
+                    </div>
+                    <div class="box active">
+                        <div class="rounded-circle text-center fw-medium">
+                            05
+                        </div>
+                        <span class="fw-medium d-block">
+                            Quitada
+                        </span>
+                        <span class="d-block text-body">
+                            {{ data.createdAt |  date: 'dd/MM/yy HH:mm' }}
+                        </span>
+                    </div>
+                </div>
+                <span class="title d-block fw-medium">
+                    Históricos:
+                </span>
+                <span class="text d-block">
+                    <span class="text-body">22 Mar, 2024 - 11:35AM:</span> Your order is now on warehouse. It’s being ready for shipped.
+                </span>
+                <span class="text d-block">
+                    <span class="text-body">23 Mar, 2024 - 10:35AM:</span> Esse pedido não precisa de entrada para iniciar a produção.
+                </span>
+                <span class="text d-block">
+                    <span class="text-body">24 Mar, 2024 - 3:45PM:</span> Your order shipped.
+                </span>
+                <span class="text d-block">
+                    <span class="text-body">25 Mar, 2024 - 2:21PM:</span> Your order delivered.
+                </span>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-lg-4">
+        <mat-card
+            class="daxa-card order-summary-card mb-25 border-radius bg-white border-none d-block"
+            [class.component-dark-theme]="themeService.isDark()"
+            [class.rtl-enabled]="themeService.isRTLEnabled()"
+        >
+            <mat-card-header>
+                <mat-card-title>
+                    <h5 class="mb-0">
+                        Resumo financeiro
+                    </h5>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="order-summary-table">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th scope="col" class="fw-medium text-black">
+                                    Descrição
+                                </th>
+                                <th scope="col" class="fw-medium text-black">
+                                    Valor
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="text-body">
+                                    Subtotal
+                                </td>
+                                <td class="text-body">
+                                    {{ data.initialTotal | currency }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-body">
+                                    Desconto no Pedido
+                                </td>
+                                <td class="text-body">
+                                    {{ data.discountOrder | currency }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-body">
+                                    Desconto nos Produtos
+                                </td>
+                                <td class="text-body">
+                                    {{ data.discountOrderProducts | currency }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-black">
+                                    Total Final
+                                </td>
+                                <td class="text-body">
+                                    {{ data.discountTotal | currency }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-body">
+                                    Valor Pago
+                                </td>
+                                <td class="text-body">
+                                    {{ data.discountTotal | currency }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-body">
+                                    Valor Pendente
+                                </td>
+                                <td class="text-body">
+                                    {{ data.finalTotal | currency }}
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block">
+            <mat-card-content>
+                <mat-tab-group>
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            Produtos
+                        </ng-template>
+                        <div class="recent-orders-table">
+                            <div class="table-responsive">
+                                <table mat-table [dataSource]="dataProducts">
+                                    <ng-container matColumnDef="name">
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            Nome
+                                        </th>
+                                        <td mat-cell *matCellDef="let element">
+                                                {{ element.name }}
+
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="quantity">
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            QTD
+                                        </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <div class="info d-flex align-items-center">
+                                                {{ element.quantity }}
+                                            </div>
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="discount">
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            Desconto
+                                        </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <div class="info d-flex align-items-center">
+                                                {{ element.discount | currency }}
+                                            </div>
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="extraPrice">
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            Extras
+                                        </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <div class="info d-flex align-items-center">
+                                                {{ element.extraPrice | currency }}
+                                            </div>
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="finalUnit">
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            Unitário
+                                        </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{ element.finalUnit | currency }}
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="finalTotal">
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            Total
+                                        </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            {{ element.finalTotal | currency }}
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="description">
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            Descrição
+                                        </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span *ngFor="let option of element.options">
+                                                {{ option.title }}: {{ showOptionsValue(option) }}
+                                            </span>
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </mat-tab>
+
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            Pagamentos
+                        </ng-template>
+                        Content 2
+                    </mat-tab>
+
+                </mat-tab-group>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+</div>

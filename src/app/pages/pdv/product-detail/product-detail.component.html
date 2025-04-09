@@ -1,0 +1,64 @@
+<mat-card
+        class="daxa-card product-details-card mb-25 border-radius bg-white border-none d-block"
+        [class.component-dark-theme]="themeService.isDark()"
+        [class.rtl-enabled]="themeService.isRTLEnabled()"
+>
+    <mat-card-content>
+        <p class="text-center" *ngIf="produto.name == ''; else hasProductSelect"> Selecione um produto na listagem a esquerda</p>
+        <ng-template #hasProductSelect>
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <!--
+                    <div class="product-details-image ">
+                        <div class="product-gallery__featured">
+                            <owl-carousel-o [options]="{items: 1, dots: false, animateIn: 'fadeIn', animateOut: 'fadeOut'}" #owlCar>
+                                <ng-container *ngFor="let image of productImages">
+                                    <ng-template carouselSlide [id]="image.url">
+                                        <img [src]="image.url" [alt]="image.url" class="border-radius w-100">
+                                    </ng-template>
+                                </ng-container>
+                            </owl-carousel-o>
+                        </div>
+                    </div>
+                    -->
+                </div>
+                <div class="col-md-12">
+                    <div class="product-details-content">
+                        <h3>
+                            {{ produto.name }}
+                        </h3>
+                        <div class="price d-flex align-items-center lh-1">
+                        <span class="text-black fw-medium d-block">
+                            {{ produto.salesValue | currency }}
+                        </span>
+                        </div>
+                        <p>
+                            {{ produto.description }}
+                        </p>
+                        <div *ngFor="let option of produto.options" class="mb-20">
+                            <h5>{{ option.title }}</h5>
+                            <mat-button-toggle-group name="{{option.title}}" [multiple]="option.type == 'MULTI_SELECT'">
+                                <mat-button-toggle *ngFor="let value of option.values" value="{{value.name}}">{{ value.name }}</mat-button-toggle>
+                            </mat-button-toggle-group>
+                        </div>
+
+                        <div class="add-to-cart d-flex align-items-center">
+                            <div class="quantity-counter">
+                                <button (click)="decrement()">
+                                    -
+                                </button>
+                                <input type="number" [(ngModel)]="qtdProduct"/>
+                                <button (click)="increment()">
+                                    +
+                                </button>
+                            </div>
+                            <button mat-button (click)="addProductToCard(produto)">
+                                Adicione no carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </mat-card-content>
+</mat-card>

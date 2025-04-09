@@ -1,0 +1,22 @@
+<div
+    [ngClass]="{'blank-page': router.url === '/auth' || router.url === '/auth/login' || router.url === '/auth/logout' || router.url === '/auth/forgot-password' || router.url === '/auth/reset-password' || router.url === '/auth/lock-screen' || router.url === '/auth/logout' || router.url === '/auth/confirm-email' || router.url === '/coming-soon'}"
+    [class.card-borderd-theme]="themeService.isCardBorder()"
+    [class.card-border-radius]="themeService.isCardBorderRadius()"
+    [class.rtl-enabled]="themeService.isRTLEnabled()"
+>
+    <app-sidebar/>
+
+    <!-- Main Content -->
+    <div
+        class="main-content transition d-flex flex-column"
+        [ngClass]="{'active': isSidebarToggled}"
+        [class.right-sidebar]="themeService.isRightSidebar()"
+        [class.hide-sidebar]="themeService.isHideSidebar()"
+    >
+        <app-header/>
+        <router-outlet/>
+        <div class="flex-grow-1"></div>
+        <app-footer/>
+    </div>
+
+</div>

@@ -1,0 +1,341 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-between">
+    <h5 class="mb-0">
+        Checkout
+    </h5>
+    <ol class="breadcrumb list-unstyled mt-0 mb-0 pl-0">
+        <li class="breadcrumb-item position-relative">
+            <a routerLink="/pdv" class="d-inline-block position-relative">
+                <i class="ri-home-8-line"></i>
+                PDV
+            </a>
+        </li>
+        <li class="breadcrumb-item position-relative">
+            Checkout
+        </li>
+    </ol>
+</div>
+
+<!-- Create Order -->
+<form>
+    <div class="row">
+        <div class="col-lg-8">
+            <mat-card class="daxa-card checkout-card mb-25 border-radius bg-white border-none d-block">
+                <mat-card-header>
+                    <mat-card-title>
+                        <h5 class="mb-0">
+
+                        </h5>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-stepper linear #stepper>
+                        <mat-step>
+                            <ng-template matStepLabel>
+                                Identificação do cliente
+                            </ng-template>
+                            <form>
+
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-25">
+                                            <label class="main-label d-block lh-1 text-black">
+                                                Nome
+                                            </label>
+                                            <mat-form-field>
+                                                <mat-label>
+                                                    Nome
+                                                </mat-label>
+                                                <input matInput placeholder="E.g. Mateo Luca">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-25">
+                                            <label class="main-label d-block lh-1 text-black">
+                                                Telefone
+                                            </label>
+                                            <mat-form-field>
+                                                <mat-label>
+                                                    Telefone
+                                                </mat-label>
+                                                <input matInput placeholder="E.g. +(415) 555‑0132">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 d-flex align-items-center">
+                                        <mat-checkbox> Esse numero tem WhatsApp ?</mat-checkbox>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-25">
+                                            <label class="main-label d-block lh-1 text-black">
+                                                Instagram
+                                            </label>
+                                            <mat-form-field>
+                                                <mat-label>
+                                                    Instagram
+                                                </mat-label>
+                                                <input matInput>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="mb-25">
+                                            <label class="main-label d-block lh-1 text-black">
+                                                Endereço
+                                            </label>
+                                            <mat-form-field>
+                                                <mat-label>
+                                                    Endereço
+                                                </mat-label>
+                                                <input matInput placeholder="E.g. Mateo Luca">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <mat-card-actions align="end" class="pe-15">
+                                    <button mat-flat-button matStepperNext class="daxa">Próximo</button>
+                                </mat-card-actions>
+                            </form>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>
+                                Entrega
+                            </ng-template>
+                            <form>
+                                <div class="row mb-25">
+                                    <div class="col-md-4">
+                                        <label class="main-label d-block lh-1 text-black">
+                                            Tipo de entrega
+                                        </label>
+                                        <mat-form-field class="">
+                                            <mat-label>Tipo</mat-label>
+                                            <mat-select>
+                                                <mat-option value="entrega">Entregar</mat-option>
+                                                <mat-option value="retirada">Retirar</mat-option>
+                                                <mat-option value="indefinido">Indefinido</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="main-label d-block lh-1 text-black">
+                                            Data de entrega
+                                        </label>
+                                        <mat-form-field appearance="fill">
+                                            <input matInput [matDatepicker]="picker2" mask="d0/M0/0000" placeholder="DD/MM/YYYY">
+                                            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker2></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4 d-flex justify-content-center align-items-center mt-20 text-center">
+                                        Prazo: 20 dias corridos ou 15 dias úteis
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <button mat-button matStepperPrevious class="mr-15">Anterior</button>
+                                    <button mat-flat-button matStepperNext class="daxa">Próximo</button>
+                                </div>
+                            </form>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>
+                                Pagamento
+                            </ng-template>
+                            <form>
+                                <div class="row mb-25">
+                                    <div class="col-md-4">
+                                        <label class="main-label d-block lh-1 text-black">
+                                            Venda feito por:
+                                        </label>
+                                        <mat-form-field>
+                                            <mat-label>Vek Souza</mat-label>
+                                            <input
+                                                type="text"
+                                                placeholder="Pick one"
+                                                matInput
+                                                [formControl]="myControl"
+                                                [matAutocomplete]="auto"
+                                            >
+                                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                                @for (option of filteredOptions | async; track option) {
+                                                    <mat-option [value]="option">{{ option }}</mat-option>
+                                                }
+                                            </mat-autocomplete>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-8 d-flex align-items-center mt-20">
+                                        <button mat-flat-button extended class="daxa" (click)="openDialog()">
+                                            <mat-icon>add</mat-icon>
+                                            Entrada
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row mb-25">
+                                    <div class="col-md-4">
+                                        <label class="main-label d-block lh-1 text-black">
+                                            Metodo de pagamento
+                                        </label>
+                                        <mat-form-field class="">
+                                            <mat-label>Metodo de pagamento</mat-label>
+                                            <mat-select>
+                                                <mat-option value="entrega">Crédito</mat-option>
+                                                <mat-option value="retirada">Pix</mat-option>
+                                                <mat-option value="indefinido">Debito</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-25">
+                                            <label class="main-label d-block lh-1 text-black">
+                                                Valor
+                                            </label>
+                                            <mat-form-field>
+                                                <mat-label>
+                                                    20,0
+                                                </mat-label>
+                                                <input matInput placeholder="E.g. Mateo Luca">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-25">
+                                            <label class="main-label d-block lh-1 text-black">
+                                                Parcela
+                                            </label>
+                                            <mat-form-field>
+                                                <mat-label>
+                                                    Parcela
+                                                </mat-label>
+                                                <input matInput placeholder="" type="number">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-end">
+                                    <button mat-button matStepperPrevious class="mr-15">Anterior</button>
+                                    <button mat-flat-button matStepperNext class="daxa">Próximo</button>
+                                </div>
+                            </form>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>
+                                Resumo
+                            </ng-template>
+                            <div class="row mt-40">
+                                <div class="col-sm-12">
+                                    <div class="mb-25">
+                                        <label class="main-label d-block lh-1 text-black">
+                                            Observação
+                                        </label>
+                                        <mat-form-field class="textarea">
+                                            <mat-label>
+                                                Write your note here....
+                                            </mat-label>
+                                            <textarea matInput placeholder="E.g. It makes me feel..."></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button mat-button class="mr-15" matStepperPrevious>Anterior</button>
+                                <button mat-flat-button extended matStepperNext class="daxa">
+                                    <mat-icon>check</mat-icon>
+                                    Finalizar
+                                </button>
+                            </div>
+                        </mat-step>
+                    </mat-stepper>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-lg-4">
+            <mat-card
+                class="daxa-card checkout-card border-radius bg-white border-none d-block"
+                [class.component-dark-theme]="themeService.isDark()"
+                [class.rtl-enabled]="themeService.isRTLEnabled()"
+            >
+                <mat-card-header>
+                    <mat-card-title>
+                        <h5 class="mb-0">
+                            Shopping Cart
+                        </h5>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="your-order-table">
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="fw-medium text-black">
+                                        Descrição
+                                    </th>
+                                    <th scope="col" class="fw-medium text-black">
+                                        Valor
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="text-body">
+                                        Pagamento inicial:
+                                    </td>
+                                    <td class="text-body">
+                                        $1,105.00
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-body">
+                                        Desconto :
+                                    </td>
+                                    <td class="text-body">
+                                        -$105.00
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-black">
+                                        Subtotal :
+                                    </td>
+                                    <td class="text-body">
+                                        $1,000.00
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-body">
+                                        Shipping Charge :
+                                    </td>
+                                    <td class="text-body">
+                                        $80.00
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-black">
+                                        Total :
+                                    </td>
+                                    <td class="text-body">
+                                        $900.00
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+

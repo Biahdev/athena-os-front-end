@@ -1,0 +1,134 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-between">
+    <h5 class="mb-0">
+        Detalhe do produto
+    </h5>
+    <ol class="breadcrumb list-unstyled mt-0 mb-0 pl-0">
+        <li class="breadcrumb-item position-relative">
+            <a routerLink="/clients" class="d-inline-block position-relative">
+                <i class="ri-home-8-line"></i>
+                Produtos
+            </a>
+        </li>
+        <li class="breadcrumb-item position-relative">
+            Detalhe do produto
+        </li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <app-mini-card title="Ranking" icon="groups" iconColor="text-white"
+                       value="1°" description="Esse mês"
+                       graphValue=""></app-mini-card>
+    </div>
+
+    <div class="col-md-3">
+        <app-mini-card title="Vendidos" icon="price_check" iconColor="text-white"
+                       value="100" graphValue=""
+                       description="Esse mês"></app-mini-card>
+    </div>
+
+    <div class="col-md-3">
+        <app-mini-card title="Estoque" icon="mintmark" iconColor="text-white"
+                       value="30" graphValue=""
+                       description="Esse mês"></app-mini-card>
+    </div>
+    <div class="col-md-3">
+        <app-mini-card title="Ultima venda" icon="mintmark" iconColor="text-white"
+                       value="01/09/2024" graphValue=""
+                       description="Esse mês"></app-mini-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4">
+        <mat-card
+            class="daxa-card customer-card mb-25 border-radius bg-white border-none d-block"
+            [class.component-dark-theme]="themeService.isDark()"
+            [class.rtl-enabled]="themeService.isRTLEnabled()"
+        >
+            <mat-card-content>
+
+                <owl-carousel-o [options]="imageSlides2">
+                    <ng-template carouselSlide>
+                        <img src="https://loremflickr.com/150/150" alt="card" class="w-100">
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <img src="https://loremflickr.com/150/150" alt="card" class="w-100">
+                    </ng-template>
+                </owl-carousel-o>
+                <div class="info">
+                    <h5 class="d-flex justify-content-between align-items-center">
+                        <span>
+                            {{ data.name }}
+                        </span>
+                        <a [routerLink]="['/products/edit', data.productId]" mat-icon-button type="button" class="daxa"
+                           matTooltip="Editar o produto" matTooltipPosition="above">
+                            <mat-icon>edit</mat-icon>
+                        </a>
+                    </h5>
+                    <ul class="pl-0 mb-0 list-unstyled mt-0">
+                        <li class="text-body mb-0">
+                            <span class="d-block text-black fw-medium">
+                                Status
+                            </span>
+                            <span class="badge text-outline-success" *ngIf="data.status == 'REGULAR'">
+                                {{ data.status }}
+                            </span>
+                            <span class="badge text-outline-danger" *ngIf="data.status == 'PROMOCAO'">
+                                 {{ data.status }}
+                            </span>
+                            <span class="badge text-outline-secondary" *ngIf="data.status == 'INATIVO'">
+                                 {{ data.status }}
+                            </span>
+                        </li>
+                        <li class="text-body">
+                            <span class="d-block text-black fw-medium">
+                                Categoria
+                            </span>
+                            {{ data.categoryName }}
+                        </li>
+                        <li class="text-body">
+                            <span class="d-block text-black fw-medium">
+                                Preço de custo
+                            </span>
+                            {{ data.costValue }}
+                        </li>
+                        <li class="text-body">
+                            <span class="d-block text-black fw-medium">
+                                Preço de Venda
+                            </span>
+                            {{ data.salesValue }}
+                        </li>
+                        <li class="text-body">
+                            <span class="d-block text-black fw-medium">
+                                Opções do produto
+                            </span>
+                            <p class="text-body mb-0" *ngFor="let option of data.options">
+                                {{ option.title }}: {{ showOptionsValue(option) }}
+                            </p>
+                        </li>
+                        <li class="text-body">
+                            <span class="d-block text-black fw-medium">
+                                Descrição do produto
+                            </span>
+                            {{ data.description }}
+                        </li>
+                    </ul>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-md-8">
+        <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block ">
+            <mat-card-content>
+                <mat-tab-group>
+                    <mat-tab label="Pedidos"> Todos os pedidos com esse produto</mat-tab>
+                    <mat-tab label="Históricos">
+                        Timeline de historicos desse produto
+                    </mat-tab>
+                </mat-tab-group>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>
+    Deletando
+</h1>
+<div mat-dialog-content>
+    <p>
+        Você tem certeza que deseja deletar '{{data.name}}' ?
+    </p>
+</div>
+<div mat-dialog-actions class="mt-0">
+    <button mat-button class="primary" (click)="onNoClick($event)" mat-dialog-close>
+        Cancelar
+    </button>
+    <button mat-button color="warn" type="submit" (click)="onSubmit()" mat-dialog-close cdkFocusInitial>
+        Deletar
+    </button>
+</div>
+

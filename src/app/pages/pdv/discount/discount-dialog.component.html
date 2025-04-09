@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Desconto</h1>
+<form (ngSubmit)="onSubmit()">
+    <div mat-dialog-content>
+        <div class="row">
+            <div class="col-md-6 mb-10">
+                <mat-form-field>
+                    <mat-label>
+                        Tipo de desconto
+                    </mat-label>
+                    <mat-select>
+                        <mat-option value=""> Por produto - % </mat-option>
+                        <mat-option value=""> Por produto - Fixo </mat-option>
+                        <mat-option value=""> Total do carrinho - % </mat-option>
+                        <mat-option value=""> Total do carrinho - Fixo </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-5 mb-10">
+                <mat-form-field>
+                    <mat-label>Valor</mat-label>
+                    <input matInput>
+                </mat-form-field>
+            </div>
+            <div class="col-md-1 mb-10 d-flex align-items-center justify-content-center">
+                <button mat-icon-button> <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+
+
+        </div>
+    </div>
+    <div mat-dialog-actions class="mt-0">
+        <button mat-button class="primary" (click)="onNoClick($event)">Cancelar</button>
+        <button mat-button class="daxa" type="submit">Salvar</button>
+    </div>
+</form>

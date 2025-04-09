@@ -1,0 +1,65 @@
+<mat-card
+        class="daxa-card courses-categories-card mb-25 border-radius bg-white border-none d-block"
+        [class.component-dark-theme]="themeService.isDark()"
+>
+    <mat-card-header>
+        <mat-card-title>
+            <form class="search-box position-relative w-100">
+                <i class="material-symbols-outlined">search</i>
+                <input type="text" class="input-search d-block border-none outline-0 w-100" placeholder="Pesquise..."
+                       (keyup)="applyFilter($event)" #input>
+            </form>
+        </mat-card-title>
+        <mat-card-subtitle>
+            <button type="button" mat-button class="card-header-menu-btn ml-10" [matMenuTriggerFor]="cardHeaderMenu">
+                Categorias
+            </button>
+            <mat-menu #cardHeaderMenu="matMenu" class="card-header-menu" xPosition="before">
+                <button mat-menu-item *ngFor="let categorie of categories">
+                    {{ categorie.name }}
+                </button>
+            </mat-menu>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="courses-categories-table">
+            <div class="table-responsive">
+                <table mat-table [dataSource]="dataSource">
+                    <ng-container matColumnDef="photo">
+                        <td mat-cell *matCellDef="let element" class="course-info">
+                            <div class="course-info d-flex align-items-center course-info">
+                                <div class="image">
+                                    <img src="/images/products/product1.jpg" class="border-radius w-100" alt="course-image">
+                                </div>
+                                <div class="info">
+                                    <h5 class="mb-0">
+                                        <a [routerLink]="['/product/', element.productId]">
+                                            {{ element.name }}
+                                        </a>
+                                    </h5>
+                                    <p class="text-body">
+                                        {{ element.description }}
+                                    </p>
+                                    <span class="mt-0 text-white fw-bold">
+                                        {{ element.salesValue | currency }}
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="description">
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-button class="link-btn text-body" (click)="productDetail(element)">
+                                <i class="material-symbols-outlined">
+                                    east
+                                </i>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </mat-card-content>
+</mat-card>

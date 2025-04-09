@@ -1,0 +1,119 @@
+<mat-card class="daxa-card order-summary-card courses-categories-card mb-25 border-radius bg-white border-none d-block"
+          [class.component-dark-theme]="themeService.isDark()">
+    <mat-card-content>
+        <p class="text-center" *ngIf="false; else hasProductInCart"> Adicione produtos no carrinho</p>
+        <ng-template #hasProductInCart>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="courses-categories-table">
+                        <div class="table-responsive">
+                            <table mat-table [dataSource]="dataSource">
+                                <ng-container matColumnDef="product">
+                                    <td mat-cell *matCellDef="let element" class="course-info">
+                                        <div class="course-info d-flex align-items-center course-info">
+                                            <div class="info">
+                                                <h5 class="mb-0">
+                                                    {{ element.name }}
+                                                </h5>
+                                                <p class="text-body mb-0" *ngFor="let option of element.options">
+                                                    {{ option.title }}: {{ showOptionsValue(option) }}
+                                                </p>
+                                                <span class="mt-0 text-white fw-bold">
+                                                    {{ element.salesValue | currency }} | {{ getTotalValueForProduct(element) | currency }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="counterButtons">
+                                    <td mat-cell *matCellDef="let element" class="">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <button mat-button class="link-btn text-body" (click)="increment(element)">
+                                                <i class="material-symbols-outlined">
+                                                    add
+                                                </i>
+                                            </button>
+                                            <span class="mt-10 mb-10 text-white text-center fw-bold d-block">
+                                               <input type="number" class="inputQtdValue" [(ngModel)]="element.productQtd"/>
+                                            </span>
+                                            <button mat-button class="link-btn text-body" (click)="decrement(element)">
+                                                <i class="material-symbols-outlined">
+                                                    remove
+                                                </i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="order-summary-table">
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="fw-medium text-black">
+                                        Descrição
+                                    </th>
+                                    <th scope="col" class="fw-medium text-black">
+                                        Valores
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="text-body">
+                                        Extras
+                                    </td>
+                                    <td class="text-body">
+                                        R$100.00
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-body">
+                                        Desconto:
+                                    </td>
+                                    <td class="text-body">
+                                       - {{cart.totalDiscontValue | currency}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-black">
+                                        Total
+                                    </td>
+                                    <td class="text-body">
+                                        {{ cart.totalValueCart | currency }}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-20">
+                <div class="col-md-12">
+                    <p class="text-body">
+                        BTN para adicionar desconto fixo/porcentagem sobre valor total ou item específico
+                    </p>
+                </div>
+            </div>
+            <mat-card-actions align="end">
+                <button mat-flat-button extended color="info" class="mr-15" (click)="openDiscountDialog()">
+                    <mat-icon>sell</mat-icon>
+                    Desconto
+                </button>
+                <button mat-flat-button extended class="daxa" (click)="goToCheckout()">
+                    <mat-icon>shopping_cart_checkout</mat-icon>
+                    Checkout
+                </button>
+
+            </mat-card-actions>
+        </ng-template>
+    </mat-card-content>
+</mat-card>

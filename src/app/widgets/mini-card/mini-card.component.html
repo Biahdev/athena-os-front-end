@@ -1,0 +1,31 @@
+<mat-card class="daxa-card total-orders-card mb-25 border-radius bg-white border-none d-block">
+    <mat-card-content>
+        <div class="d-flex justify-content-between">
+            <div class="title">
+                <h5>
+                    {{ title }}
+                </h5>
+                <div class="number fw-medium lh-1">
+                    {{ value }}
+                </div>
+            </div>
+            <div class="icon rounded-circle position-relative {{iconColor}} text-center">
+                <i class="material-symbols-outlined">
+                     {{ icon }}
+                </i>
+            </div>
+        </div>
+        <div class="info d-flex align-items-center justify-content-between">
+            <span class="sub-title d-block text-body">
+                {{ description }}
+            </span>
+
+            <span [ngClass]="{ 'down': isNegativeValue}" class="daxa-up-down-badge  position-relative">
+                <i class="material-symbols-outlined">
+                     {{ isNegativeValue ? 'trending_down' : 'trending_up' }}
+                </i>
+                {{ graphValue | number: '1.2' }}%
+            </span>
+        </div>
+    </mat-card-content>
+</mat-card>

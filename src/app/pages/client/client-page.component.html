@@ -1,0 +1,176 @@
+<!-- Alerts -->
+<div class="alert alert-success d-flex justify-content-between align-items-center" role="alert" *ngIf="success">
+    {{ successMessage }}
+    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert('sucess')">
+        <i class="ri-close-line"></i>
+    </button>
+</div>
+<div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert" *ngIf="error">
+    {{ errorMessage }}
+    <button type="button" class="close bg-transparent p-0 border-none" data-dismiss="alert" aria-label="Close" (click)="dismissAlert('error')">
+        <i class="ri-close-line"></i>
+    </button>
+</div>
+
+
+<!-- Breadcrumb -->
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-between">
+    <h5 class="mb-0">
+        Clientes
+    </h5>
+    <ol class="breadcrumb list-unstyled mt-0 mb-0 pl-0">
+        <li class="breadcrumb-item position-relative">
+            <a routerLink="/clients" class="d-inline-block position-relative">
+                <i class="ri-home-8-line"></i>
+                Clientes
+            </a>
+        </li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <app-mini-card title="Total" icon="groups" iconColor="text-white"
+                       value="{{totalClient}}" description="Esse mês"
+                       graphValue="{{totalClientGraphValue}}"></app-mini-card>
+    </div>
+
+    <div class="col-md-4">
+        <app-mini-card title="Regulares" icon="price_check" iconColor="text-white"
+                       value="{{qtdRegulares}}" graphValue="{{qtdRegularesGraphValue}}"
+                       description="Esse mês"></app-mini-card>
+    </div>
+
+    <div class="col-md-4">
+        <app-mini-card title="Inadimplente" icon="mintmark" iconColor="text-white"
+                       value="{{qtdInadimplente}}" graphValue="{{qtdInadimplenteGraphValue}}"
+                       description="Esse mês"></app-mini-card>
+    </div>
+</div>
+
+
+<mat-card [class.rtl-enabled]="false" class="daxa-card clients-list-card mb-25 border-radius bg-white border-none d-block">
+    <mat-card-header>
+        <mat-card-title>
+            <form class="search-box position-relative mr-10">
+                <i class="material-symbols-outlined">search</i>
+                <input type="text" class="input-search d-block w-100 border-none outline-0" placeholder="Pesquise..."
+                       (keyup)="applyFilter($event)" #input>
+            </form>
+        </mat-card-title>
+        <mat-card-subtitle>
+            <button (click)="openClientCreateDialog()" mat-button class="add-new-btn">
+                <mat-icon>add</mat-icon>
+                Nova Cliente
+            </button>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="table-category">
+            <div class="table-responsive">
+                <table mat-table [dataSource]="dataSource" matSort>
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                            Nome
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <a [routerLink]="['/clients/details', element.clientId]" matTooltip="Detalhe do cliente"
+                               matTooltipPosition="above">
+                                {{ element.name }}
+                            </a>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                            Status
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="daxa-badge confirmed d-inline-block" *ngIf="element.status == 'REGULAR'">
+                                {{ element.status }}
+                            </span>
+                            <span class="daxa-badge rejected d-inline-block" *ngIf="element.status == 'INADIMPLENTE'">
+                                 {{ element.status }}
+                            </span>
+                            <span class="daxa-badge secondary d-inline-block" *ngIf="element.status == 'DESATIVADO'">
+                                 {{ element.status }}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="phone">
+                        <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                            Telefone
+                        </th>
+                        <td class="" mat-cell *matCellDef="let element">
+                            <a class="" href="https://wa.me/{{ element.phone }}/" target="_blank"
+                               rel="noopener noreferrer">
+                                {{ (element.phone ?? "") | mask: "+00 (00) 0 0000-0000||+00 (00) 0000-0000" ?? "" }}
+                            </a>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="instagram">
+                        <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                            Instagram
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <a class="" href="https://www.instagram.com/{{ element.instagram }}/" target="_blank"
+                               rel="noopener noreferrer">
+                                <span *ngIf="element.instagram">
+                                  &#64;{{element.instagram}}
+                                </span>
+                            </a>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="address">
+                        <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                            Endereço
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{ element.address }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Action
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div class="action-info">
+                                <a mat-button [routerLink]="['/clients/detail', element.clientId]" matTooltip="Detalhe do cliente"
+                                   matTooltipPosition="above">
+                                    <i class="material-symbols-outlined">
+                                        visibility
+                                    </i>
+                                </a>
+                                <button mat-button type="button" class="daxa" matTooltip="Edite este cliente"
+                                        (click)="openClientEditDialog(element)" matTooltipPosition="above">
+                                    <i class="material-symbols-outlined">
+                                        edit
+                                    </i>
+                                </button>
+                                <button mat-button type="button" color="warn" matTooltip="Delete este cliente"
+                                        (click)="openClientDeleteDialog(element)" matTooltipPosition="above">
+                                    <i class="material-symbols-outlined">
+                                        delete
+                                    </i>
+                                </button>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">Cliente "{{ input.value }}" não foi encontrado</td>
+                    </tr>
+                </table>
+            </div>
+            <mat-paginator [pageSizeOptions]="[10, 15, 25]" showFirstLastButtons></mat-paginator>
+        </div>
+    </mat-card-content>
+</mat-card>
+
