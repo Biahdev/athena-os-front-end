@@ -18,6 +18,4 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 COPY --from=build /app/dist/daxa/browser /usr/share/nginx/html
 
-EXPOSE 4200
-
 CMD ["nginx", "-g", "daemon off;"]
