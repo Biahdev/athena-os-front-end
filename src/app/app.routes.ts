@@ -28,16 +28,6 @@ import {InternalErrorComponent} from "./widgets/internal-error/internal-error.co
 
 export const routes: Routes = [
     {
-        path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full'
-    },
-    {
-        path: 'internal-error',
-        canActivate: [AuthGuard],
-        component: InternalErrorComponent
-    },
-    {
         path: 'auth',
         component: AuthenticationComponent,
         children: [
@@ -124,6 +114,11 @@ export const routes: Routes = [
             {path: '', component: AccountSettingsComponent},
             {path: 'change-password', component: ChangePasswordComponent},
         ]
+    },
+    {
+        path: 'internal-error',
+        canActivate: [AuthGuard],
+        component: InternalErrorComponent
     },
     {path: '**', canActivate: [AuthGuard], component: NotFoundComponent},
 ];
