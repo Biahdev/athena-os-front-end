@@ -16,8 +16,12 @@ WORKDIR /usr/share/nginx/html
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
+RUN rm -rf /etc/nginx/conf.d/*
+
 COPY --from=build /app/dist/daxa/browser /usr/share/nginx/html
 
-EXPOSE 80
+COPY nginx-custom.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 4200
 
 CMD ["nginx", "-g", "daemon off;"]
