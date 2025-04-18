@@ -1,5 +1,4 @@
-import { environment as baseEnv } from './environment';
-
 export const environment = {
-    ...baseEnv,
+    production: false,
+    apiUrl: 'http://localhost:8080/'
 };
