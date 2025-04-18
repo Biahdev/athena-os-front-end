@@ -1,3 +1,4 @@
 export const environment = {
-        apiUrl: 'https://back-end.abeatrizdev.com.br/'
+    production: false,
+    apiUrl: 'http://localhost:8080/'
 };

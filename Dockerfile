@@ -8,7 +8,7 @@ RUN npm install && npm cache clean --force
 
 COPY . .
 
-RUN npx ng build --configuration production
+RUN npx ng build --configuration=production
 
 FROM nginx:stable-alpine
 
