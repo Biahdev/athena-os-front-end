@@ -10,6 +10,7 @@ import {tap} from "rxjs/operators";
 export class AuthService {
 
     private readonly baseUrl = environment.apiUrl + 'auth';
+    private readonly userMeUrl = `${environment.apiUrl}users/me`;
     private readonly STORAGE_AUTH_KEY = "userAuthenticated";
     private readonly STORAGE_USER_ROLE = "userRole";
 
@@ -33,7 +34,8 @@ export class AuthService {
     }
 
     private fetchUserData() {
-        this.http.get<any>(`${environment.apiUrl}users/me`, {
+        console.debug(this.userMeUrl)
+        this.http.get<any>(this.userMeUrl, {
             withCredentials: true
         }).subscribe({
             next: (userData) => {
@@ -42,6 +44,7 @@ export class AuthService {
             },
             error: (error) => {
                 console.error('Erro ao buscar dados do usuário:', error);
+                console.error(error.message);
                 this.logout();
             }
         });
@@ -72,7 +75,6 @@ export class AuthService {
     hasAnyRole(roles: Array<string>) {
         let userRoles = this.getUserRoles();
         return roles.some(role => userRoles.includes(role));
-
     }
 
 
