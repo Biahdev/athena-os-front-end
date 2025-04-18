@@ -105,7 +105,7 @@
                         <td class="" mat-cell *matCellDef="let element">
                             <a class="" href="https://wa.me/{{ element.phone }}/" target="_blank"
                                rel="noopener noreferrer">
-                                {{ (element.phone ?? "") | mask: "+00 (00) 0 0000-0000||+00 (00) 0000-0000" ?? "" }}
+                                {{ (element.phone ?? "") | mask: "+00 (00) 0 0000-0000||+00 (00) 0000-0000"}}
                             </a>
                         </td>
                     </ng-container>

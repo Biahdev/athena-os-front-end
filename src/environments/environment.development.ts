@@ -1,3 +1,4 @@
 export const environment = {
-     ...require('./environment').environment
+    production: false,
+    apiUrl: 'http://localhost:8080/'
 };
