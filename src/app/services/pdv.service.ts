@@ -24,10 +24,8 @@ export class PDVService {
     private initialCart = new BehaviorSubject<Cart>({totalValueCart: 0, totalDiscontValue: 20, products: []});
     public currentCart = this.initialCart.asObservable()
 
-
     constructor() {
     }
-
 
     setData(product: Product) {
         this.initialProductDetail.next(product);
