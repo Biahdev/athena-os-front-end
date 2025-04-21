@@ -22,7 +22,7 @@ export class AuthService {
         }).pipe(
             tap(() => {
                 this.setUserAuthenticated(true);
-                this.fetchUserData();
+                // this.fetchUserData();
             })
         );
     }
