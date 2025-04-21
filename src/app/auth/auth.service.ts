@@ -19,7 +19,7 @@ export class AuthService {
     login(email: string, password: string): Observable<any> {
         console.log('----- login -----')
         console.log(`${this.baseUrl}/login`);
-        console.log('----- login -----')
+        console.log('-----------------')
         return this.http.post(`${this.baseUrl}/login`, {email: email, password: password}, {
             withCredentials: true
         }).pipe(

@@ -1,4 +1,1 @@
-export const environment = {
-    production: false,
-    apiUrl: ''
-};
+export const environment = {};
