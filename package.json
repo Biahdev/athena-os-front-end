@@ -4,7 +4,7 @@
     "scripts": {
         "test": "ng test",
         "start": "npx ng serve --open --watch --configuration=development",
-        "build:prod": "node generate-env.js && npx ng build --configuration=production"
+        "build:prod": "node generate-env-prod.js && npx ng build --configuration=production"
     },
     "private": true,
     "dependencies": {

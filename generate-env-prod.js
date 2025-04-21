@@ -13,10 +13,10 @@ export const environment = {
 };
 `;
 
-fs.writeFileSync('./src/environments/environment.ts', envContent);
+fs.writeFileSync('./src/environments/environment.prod.ts', envContent);
 
 console.log('==== AFTER ====');
-const after = require('./src/environments/environment.ts');
+const after = require('./src/environments/environment.prod.ts');
 console.log(after);
 console.log(after.environment);
 console.log('==== AFTER ====');
