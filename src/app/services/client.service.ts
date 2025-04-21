@@ -10,7 +10,7 @@ import {Helper} from "../helpers/Helper";
 })
 export class ClientService {
 
-    private baseUrl = environment.apiUrl + 'clients';
+    private baseUrl = environment.apiUrl + '/clients';
     private helper: Helper = new Helper();
 
     constructor(private http: HttpClient) {

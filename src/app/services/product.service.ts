@@ -10,7 +10,7 @@ import {Product} from "../types/Product";
 })
 export class ProductService {
 
-    private baseUrl: string = environment.apiUrl + 'products';
+    private baseUrl: string = environment.apiUrl + '/products';
     private helper: Helper = new Helper();
 
     constructor(private http: HttpClient) {

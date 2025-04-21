@@ -11,7 +11,7 @@ import {OrderList} from "../types/OrderList";
 })
 export class OrderService {
 
-    private baseUrl: string = environment.apiUrl + 'orders';
+    private baseUrl: string = environment.apiUrl + '/orders';
     private helper: Helper = new Helper();
 
     constructor(private http: HttpClient) {}

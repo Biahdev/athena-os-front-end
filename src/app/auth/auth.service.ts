@@ -9,7 +9,7 @@ import {tap} from "rxjs/operators";
 })
 export class AuthService {
 
-    private readonly baseUrl = environment.apiUrl + 'auth';
+    private readonly baseUrl = environment.apiUrl + '/auth';
     private readonly STORAGE_AUTH_KEY = "userAuthenticated";
     private readonly STORAGE_USER_ROLE = "userRole";
 
@@ -17,6 +17,9 @@ export class AuthService {
     }
 
     login(email: string, password: string): Observable<any> {
+        console.log('----- login -----')
+        console.log(`${this.baseUrl}/login`);
+        console.log('----- login -----')
         return this.http.post(`${this.baseUrl}/login`, {email: email, password: password}, {
             withCredentials: true
         }).pipe(

@@ -11,7 +11,7 @@ import {Employee} from "../types/Employee";
 })
 export class EmployeeService {
 
-    private baseUrl: string = environment.apiUrl + 'employees';
+    private baseUrl: string = environment.apiUrl + '/employees';
     private helper: Helper = new Helper();
 
     constructor(private http: HttpClient) {

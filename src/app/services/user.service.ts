@@ -10,7 +10,7 @@ import {CategoryWithCountProduct} from "../types/CategoryWithCountProduct";
 })
 export class UserService {
 
-    private baseUrl = environment.apiUrl + 'users';
+    private baseUrl = environment.apiUrl + '/users';
 
     constructor(private http: HttpClient) {
     }
