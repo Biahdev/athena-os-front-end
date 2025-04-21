@@ -17,9 +17,6 @@ export class AuthService {
     }
 
     login(email: string, password: string): Observable<any> {
-        console.log('----- login -----')
-        console.log(`${this.baseUrl}/login`);
-        console.log('-----------------')
         return this.http.post(`${this.baseUrl}/login`, {email: email, password: password}, {
             withCredentials: true
         }).pipe(
@@ -36,7 +33,7 @@ export class AuthService {
     }
 
     private fetchUserData() {
-        this.http.get<any>(`${environment.apiUrl}users/me`, {
+        this.http.get<any>(`${environment.apiUrl}/users/me`, {
             withCredentials: true
         }).subscribe({
             next: (userData) => {
