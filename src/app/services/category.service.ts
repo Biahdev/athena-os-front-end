@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from "../../environments/environment";
 import {Category} from "../types/Category";
-import {CategoryWithCountProduct} from "../types/CategoryWithCountProduct";
 
 @Injectable({
     providedIn: 'root',

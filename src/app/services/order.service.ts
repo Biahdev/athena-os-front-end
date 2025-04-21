@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from "../../environments/environment";
 import {Helper} from "../helpers/Helper";
-import {Product} from "../types/Product";
 import {OrderList} from "../types/OrderList";
 
 @Injectable({
@@ -14,7 +13,8 @@ export class OrderService {
     private baseUrl: string = environment.apiUrl + '/orders';
     private helper: Helper = new Helper();
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {
+    }
 
     getAll(): Observable<any> {
         return this.http.get<OrderList>(`${this.baseUrl}`);

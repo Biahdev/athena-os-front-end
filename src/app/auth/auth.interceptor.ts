@@ -19,6 +19,9 @@ export const AuthInterceptor = (
 
     return next(modifiedRequest).pipe(
         catchError((error: HttpErrorResponse) => {
+            console.log('----')
+            console.log(error);
+            console.log('----')
 
             if (error.status === 401 || error.status === 403) {
                 authService.logout()
