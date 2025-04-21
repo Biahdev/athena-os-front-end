@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from "../../environments/environment";
-import {Client} from "../types/Client";
 import {Helper} from "../helpers/Helper";
 import {Employee} from "../types/Employee";
 

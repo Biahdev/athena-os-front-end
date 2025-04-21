@@ -15,8 +15,8 @@ export const environment = {
 
 fs.writeFileSync('./src/environments/environment.ts', envContent);
 
-const after = require('./src/environments/environment');
 console.log('==== AFTER ====');
+const after = require('./src/environments/environment.ts');
 console.log(after);
 console.log(after.environment);
 console.log('==== AFTER ====');
