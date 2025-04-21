@@ -2,12 +2,9 @@
     "name": "daxa",
     "version": "1.3.0",
     "scripts": {
-        "ng": "ng",
-        "start": "npx ng serve --open",
-        "build": "ng build",
-        "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "serve:ssr:daxa": "node dist/daxa/server/server.mjs"
+        "start": "npx ng serve --open --watch --configuration=development",
+        "build:prod": "node generate-env.js && npx ng build --configuration=production"
     },
     "private": true,
     "dependencies": {
@@ -28,6 +25,7 @@
         "@fullcalendar/daygrid": "^6.1.10",
         "@iplab/ngx-file-upload": "^18.0.0",
         "apexcharts": "^3.49.2",
+        "dotenv": "^16.5.0",
         "express": "^5.0.0",
         "moment": "^2.30.1",
         "ng-apexcharts": "1.11.0",
